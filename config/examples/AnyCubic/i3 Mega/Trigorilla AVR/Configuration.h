@@ -24,8 +24,8 @@
 #define CONFIG_EXAMPLES_DIR "AnyCubic/i3 Mega/Trigorilla AVR"
 
 //#define I3MEGA_PRO_STOCK
-//#define I3MEGA_HAS_BLTOUCH
-//#define I3MEGA_HAS_TMC2208
+#define I3MEGA_HAS_BLTOUCH
+#define I3MEGA_HAS_TMC2208
 
 /**
  * Configuration.h
@@ -153,7 +153,7 @@
 /**
  * Some Anycubic machines have Z1 and Z2 swapped to save on wiring.
  */
-//#define SWAP_Z_MOTORS
+#define SWAP_Z_MOTORS
 
 // Name displayed in the LCD "Ready" message and Info menu
 #define CUSTOM_MACHINE_NAME "Anycubic i3"
@@ -742,9 +742,9 @@
     #define DEFAULT_Ki_LIST {   1.17,   1.17 }
     #define DEFAULT_Kd_LIST {  54.19,  54.19 }
   #else
-    #define DEFAULT_Kp  15.94
+    #define DEFAULT_Kp  18.33
     #define DEFAULT_Ki   1.17
-    #define DEFAULT_Kd  54.19
+    #define DEFAULT_Kd  71.72
   #endif
 #else
   #define BANG_MAX 255    // Limit hotend current while in bang-bang mode; 255=full current
@@ -834,9 +834,9 @@
   //#define PID_BED_DEBUG // Print Bed PID debug data to the serial port.
 
   // Anycubic i3 Mega Ultrabase (0.9Ω @ 22°C)
-  #define DEFAULT_bedKp 251.78
-  #define DEFAULT_bedKi 49.57
-  #define DEFAULT_bedKd 319.73
+  #define DEFAULT_bedKp 74.99
+  #define DEFAULT_bedKi 14.53
+  #define DEFAULT_bedKd 258.01
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #else
@@ -1267,6 +1267,8 @@
 #define Y_MAX_ENDSTOP_HIT_STATE LOW
 #define Z_MIN_ENDSTOP_HIT_STATE LOW
 #define Z_MAX_ENDSTOP_HIT_STATE LOW
+#define Z2_MIN_ENDSTOP_HIT_STATE LOW
+#define Z2_MAX_ENDSTOP_HIT_STATE LOW
 #define I_MIN_ENDSTOP_HIT_STATE HIGH
 #define I_MAX_ENDSTOP_HIT_STATE HIGH
 #define J_MIN_ENDSTOP_HIT_STATE HIGH
@@ -1332,7 +1334,7 @@
   // Anycubic stock firmware defaults E0 steps to 384, but this is WAY out
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 410 }
 #else
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 96.2 }
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 415 }
 #endif
 
 /**
@@ -1858,13 +1860,13 @@
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #if ENABLED(I3MEGA_PRO_STOCK)
-  #define INVERT_X_DIR false // Mega Pro stock configuration has TMC2208 on X/Y
-  #define INVERT_Y_DIR true  // with non-reversed connectors
+  #define INVERT_X_DIR true // Mega Pro stock configuration has TMC2208 on X/Y
+  #define INVERT_Y_DIR false  // with non-reversed connectors
 #else
-  #define INVERT_X_DIR true  // set to true for stock drivers or TMC2208 with reversed connectors
-  #define INVERT_Y_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
+  #define INVERT_X_DIR false  // set to true for stock drivers or TMC2208 with reversed connectors
+  #define INVERT_Y_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
 #endif
-#define INVERT_Z_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
+#define INVERT_Z_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
 //#define INVERT_I_DIR false
 //#define INVERT_J_DIR false
 //#define INVERT_K_DIR false
@@ -1875,7 +1877,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR true
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
